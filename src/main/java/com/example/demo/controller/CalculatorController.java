@@ -13,7 +13,10 @@ public class CalculatorController {
     //http://localhost:8080/api/v1/calculator/add?num1=1.5&num2=1.5
     public Double add(@RequestParam("num1") Double num1,@RequestParam("num2") Double num2,
                       @PathVariable("num3") Double num3){
+        System.out.println(num1 + num2 + num3);
+
         return num1 + num2 + num3;
+
 
 
     }
