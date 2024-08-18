@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.PropertyDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,14 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO){
         userDTO =  userService.register(userDTO);
-        ResponseEntity<UserDTO> responseEntity = new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
 
-        return responseEntity;
+
+    }
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDTO){
+        userDTO =  userService.login(userDTO.getOwnerEmail(), userDTO.getPassword());
+        return  new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
 }
