@@ -23,6 +23,7 @@ public class PropertyConverter {
         propertyDTO.setDescription(propertyEntity.getDescription());
         propertyDTO.setAddress(propertyEntity.getAddress());
         propertyDTO.setPrice(propertyEntity.getPrice());
+        propertyDTO.setUserid((propertyEntity.getUserEntity().getId()));
 
 
         return propertyDTO;

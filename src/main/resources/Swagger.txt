@@ -1,2 +1,5 @@
 http://localhost:8080/v3/api-docs
 http://localhost:8080/swagger-ui/index.html#/
+
+For * ->one relationship the default is Fetchtype.EAGER ,while getting the parent data also get the child data
+For * ->many relationship the default is Fetchtype.LAZY, while getting the parent data only

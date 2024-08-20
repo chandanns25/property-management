@@ -2,8 +2,14 @@ package com.example.demo.service.impl;
 
 import com.example.demo.converter.PropertyConverter;
 import com.example.demo.dto.PropertyDTO;
+import com.example.demo.entity.AddressEntity;
 import com.example.demo.entity.PropertyEntity;
+import com.example.demo.entity.UserEntity;
+import com.example.demo.exception.BusinessException;
+import com.example.demo.exception.ErrorModel;
+import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.PropertyRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,17 +26,36 @@ public class PropertyServiceImpl implements PropertyService {
     @Autowired
     private PropertyConverter propertyConverter;
 
+    @Autowired
+    private UserRepository userRepository;
+
+
+
 
     @Override
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
 
 
 
-        PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
+        Optional<UserEntity> opUe = userRepository.findById(propertyDTO.getUserid());
+        if(opUe.isPresent()) {
 
-        pe = propertyRepository.save(pe);
+            PropertyEntity pe = propertyConverter.convertDTOtoEntity(propertyDTO);
 
-        propertyDTO = propertyConverter.convertEntitytoDTO(pe);
+            pe.setUserEntity(opUe.get());
+
+            pe = propertyRepository.save(pe);
+
+            propertyDTO = propertyConverter.convertEntitytoDTO(pe);
+        }else{
+
+            List<ErrorModel> errorModelList = new ArrayList<>();
+            ErrorModel errorModel = new ErrorModel();
+            errorModel.setCode("USER ID DOESNOT EXISTS");
+            errorModel.setMessage("USER ID DOESNOT EXIST PLEASE PROVIDE IT");
+            errorModelList.add(errorModel);
+            throw new BusinessException(errorModelList);
+        }
 
 
         return propertyDTO;
@@ -46,6 +71,19 @@ public class PropertyServiceImpl implements PropertyService {
           propList.add(dto);
        }
         return propList;
+    }
+
+    @Override
+    public List<PropertyDTO> getAllPropertiesForUser(Long userid) {
+        List<PropertyEntity> listOfProps = (List<PropertyEntity>)propertyRepository.findAllByUserEntityId(userid);
+        List<PropertyDTO> propList = new ArrayList<>();
+
+        for(PropertyEntity pe : listOfProps ){
+            PropertyDTO dto = propertyConverter.convertEntitytoDTO(pe);
+            propList.add(dto);
+        }
+        return propList;
+
     }
 
     @Override

@@ -1,0 +1,234 @@
+Spring web -  This will help us to build the RESTful endpoints.
+
+Lombok -  This will help us to give, avoid giving getters and setters always. Instead, we can use some annotations and it will generate the getters and setters for us.
+
+Spring data JPA - It is used to persist data between Java object and relational database.
+
+every Spring Boot application has its own server inside it, like the embedded Tomcat server.
+
+SpringApplication.run(DemoApplication.class, args); - it starts the embedded Tomcat server for us whenever when we when we run this class,
+
+SpringBoot annotation - SpringBootConfiguration, so it is making your class as a Configuration class of Spring.
+It is enabling AutoConfiguration, which means  let's say the database configuration of Spring Security Configuration is present as a dependency here, then it is going to automatically invoke that functionality and bring into action, which means if I put a Spring Security dependency here, our application will now become secure, and Spring Security will kick in,
+@ComponentScan, which means it keeps on scanning our whole application folders to find out where are @RestControllers, at @Service, @Component, @Repository, all these annotations are defined in, which all classes are defined with these annotations, and then it is going to tell Spring Container to take care of their memory management lifecycle.
+
+Tomcat server - 8080 (if u want to run the application in different port the go to application.properties then server.port = 8089)
+
+The Framework is nothing but a platform or a foundation that is used to develop software applications. For example, a Framework provides us a lot of things like classes, libraries, functions.
+
+Spring is one of a framework It helps to do easy development of Java Enterprise applications.So Spring Framework is a lightweight Framework, and it can be thought of Framework of Frameworks, Because Spring supports multiple other Frameworks like Struts, Hibernate. It comprises of many components, many modules. IOC is Inversion of Control, AOP is Aspect Oriented Programming, DAO is Data Access Object, ORM is Object Relational Mapping, WEB MVC.the IOC container is responsible to do dependency injection.
+
+Advantages of dependency injection
+* Makes the code loosely coupled so it is easy to maintain
+* makes the code easy to test
+
+Bean-any Java class whose object creation and destruction of that object, releasing of the memory is managed by Spring Framework, then we will call that Java class as a Bean.
+
+@Autowired is a way to pass one instance of one object to another class instance.
+
+@Configuration is an annotation used on the classes on which we will define the beans. Also, we can define @Configuration class on top of any class which we want to make it as a Singleton Bean.
+
+@ComponentScan, we define a package. Whichever package we define, now Spring will start to look inside that package for all the Singleton Beans, and then Spring, Spring is going to take care of the memory management for those particular beans.
+
+Rest Architecture - interaction between client and server over the internet through the json,xml,txt etc .The web services that has such architecture are called restful web services.
+REST - representational state transfer
+REST is a web standard based architecture that use HTTP based protocol for data communication
+
+GET provides read-only access, so if you have to read something from the server, the client should use GET request of HTTP protocol, GET method of HTTP protocol.
+PUT, it is used to update an existing resources on the server. or create a new resource on the server
+DELETE is used to remove a resource from the server.
+POST is used to create new resource on the server.
+PATCH is used for partially updating a resource on the server. It's same, PATCH is same as PUT, but it is used for partial update.
+OPTIONS is used to get supported operation on a resource.
+
+HTTP request contains:
+verb-get,put etc
+URI (uniform resourse identifier) each resourse in REST architecture is identified by URI,<protocol>://<service-name><ResourseType><ResourseId>
+HTTP version
+Request header
+Request body
+
+RESTfull webservices are stateless that is a request from client to the server should not be known to another request from client to the server
+
+Idemponent operation- means the result will always be same no matter how many times these operations are invoked PUT and DELETE are such operations
+
+HTTP status codes
+200, it means it's OK, success, everything is fine.
+201, something got CREATED on the server. Like in the example of POST and PUT.
+204 means, NO CONTENT was found. So let's say a resource was deleted on the server, then we can return 204 in case of DELETE operation.
+304 is resource was NOT MODIFIED on the server.
+400 means, it's a BAD REQUEST, which means server is not able to understand the request that is coming from the client.
+401 means FORBIDDEN, that this particular resource is not allowed to be accessed by somebody else.
+404 means resource was NOT FOUND on the server, the resource that was looked for was not available on the server.
+
+@Component helps us to declare any class as a singleton been
+@Controller helps us declare a new class as a Spring Controller.
+@Service is used to create another singleton class.
+Remember, @Controller, @Component all these are creating singleton class.
+Same way @Service and @Repository also create singleton class, but services you mostly use for business layer, and repository used for the Database AccessLlayer.
+@RequestMapping helps us to map a particular URL to a function.
+@RequestBody, this is used to convert the JSON format of the data that is coming. So at the start, we saw this JSON format of the data that will come from client should be converted into the Java objects,
+@RestController, then it is a combination of a @Controller and the @ResponseBody annotation. So, this @ResponseBody helps us to convert the Java class into the corresponding JSON object, and it is itself annotated with @Response, @ResponseEntity annotation.
+@CrossOrigin. The reason we have to do this is, because our server and client are running on different IP addresses, and by default any browser for, for the security purpose blocks that. If you are not running on the same server or same IP the request will get blocked. Hence, by saying @CrossOrigin on on our Controller we are saying to our Controller allows request from any IP address.
+The @Autowired annotation is a way to pass one instance of one object to another class instance. This functionality is also known as object autowiring.
+
+RESTful API is nothing but a simple Java class function can be converted into RESTful API so that that can be now accessed with the help of HTTP protocol with the help of a URL. So a particular URL is mapped to a [no audio] function, that is RESTful Web service.
+
+@RequestParam can be used to send values in the url itself
+//http://localhost:8080/api/v1/calculator/add?num1=1.5&num2=1.5
+
+PUT - updating resourses on the server(full update)
+POST - create new resourse on the server
+PATCH - partial update the resourse on the server
+GET - query&fetch data from the server
+DELETE - delete the existing resourse on the server
+
+client -> controller layer -> service layer -> repository layer -> DB
+service layer is were u write the business logic
+repository layer - repository layer or a DAO layer, and this DAO layer is going to talk to our database,
+
+Factory design pattern - were only one interface is created and multiple implementation class can be created
+@Service - is to make a class a singleton bean ( Now this Singleton is a pattern, design pattern, another design pattern where we are saying that create single instance of a class and reuse it whenever it is asked for.
+
+@Prototype - where more than one instance of the same class is used again and again, or created more than one instance of the same class is created again and again that is actually opposite of Singleton, and it is called prototype.
+
+@autowired - (dependecy injection)it is kind of a process by which Spring will make sure an object of the Singleton Bean is created, and its corresponding interface is pointing to that object, and when we do @Autowired, it makes that instance of that object available to this interface in a particular Controller class, or may it be any other class, any other Bean.
+So, there has to be a way that controllers should talk to service, only then this DTO data can be transferred, and DTO is also called a Data Transfer Object, so there should be a transfer from one layer to another layer, alright. And that is how, the thing how we do that is, with the help of another Spring mechanism called Dependency Injection.
+
+JPA is just an interface. But Hibernate is actually the implementation framework. It has implemented all the interfaces. And all the methods that is needed for doing any kind of operation, Hibernate has implemented that from the JPA interface. So Hibernate is the actual framework, which does the work, does the implementation.
+
+So what Hibernate does is it takes that object that we want to store into the database, and it calls it as a Persistent Object, and then based on some configurations and mapping that we have given with the help of XML or annotation, it is going to talk to the database and store the data or retrieve the data for us and convert back our data to our Java objects.(hiberate helps to create a table in the database using the class or the object)
+
+ the six different Hibernate interfaces which Hibernate uses to do all the ORM activities.
+-Configuration class, or you can say Configuration database. Here you can say Configuration object, when I say it just means it's literally not interface, it's actually class only. Interface in the sense, it is an interface between Java application and database. So, Configuration object is simply object which has two things. One is the mapping that provide like all the @Column mappings, @Entity, @Table mappings, and the database configuration that we provide in our property files. Like here is our Database URL, here's our Password of the Database, here is the Username of the Database, all those configurations are getting mapped in the Configuration object.
+
+- SessionFactory uses this Configuration, so the Configuration object is used by the SessionFactory object, and then the SessionFactory object helps us create one connection with the database based on this Configuration. SessionFactory is thread safe, thread safe.
+
+-A Session object is used to get a literally physical connection with the database, and then the Session object is used for the interaction with the database, and whatever object we want to save in the database or get from the database, we will do with the help of Session object.
+
+-Transaction, Hibernate is going to take care of the whole transaction activity for us.
+
+-Query object helps us to write SQL queries on our database, just like normal, but you don't write it now as a query, literally a select * from something, but you write the query on the Entity classes, on the Persistent Objects, on the Java classes.
+
+-Criteria
+
+Transient-A new instance of persistent class which is not associated with the Session. So, if until the time the Entity class,So, if until the time the Entity class, or the class which is our model, where we are actually putting the annotation about @Entity, that class is, if it has not been associated with Session object, you know, which means the state of the object can be called as transient.
+
+the, tran the state of this object gets associated with the Session object, let's say as soon as you do session .save(), you're doing session. save(), because we know multiple Session object can be created to do different operation, and those can be created from SessionFactory. So, but it is persistent, state of the object can be persistent if it has been associated with the Session.
+
+Now, if let's say after doing this operation, we close the Session, we say session.close(), then the persistent state instance will become detached instance, because it is not associated with session anymore,
+
+ let's say caching is a mechanism to enhance the performance of the system. It is a buffer memory that lies between the application and the database. The cache memory stores recently used data items in order to reduce the number of database hits as much as possible.
+
+two levels of caching
+ Hibernate supports two levels of caching. The first-level of caching is the Session cache, and it is a mandatory, it is a mandatory cache through which all requests must pass. The Session object keeps an object under its own power before committing to the database. So, as we saw, this Session object maintains a cache. So any operation that we are doing to the database we are doing with a Session object. So this Session cache is called a first-level
+
+There is another level of cache called the second-level cache, and that cache is basically not mandatory, it's an optional cache. But this cache is working, this cache works on the SessionFactory level here, and this cache is shared across multiple session. So the the second- level cache works on the SessionFactory level.
+
+ the different objects that Hibernate has, that one is the Configuration object. So in the Configuration object, we can provide many configuration. How do we provide that? With the help of property files.
+
+It is an abstraction layer built on top of Hibernate. So Hibernate was helping us to connect to the database, and do all the operations for us on the database. Spring Data JPA is an abstraction built on top of it. It even makes life easier for us,(it helps to get rid of a lot of boilerplate code that is, that is needed for writing queries, pagination, auditing, all those is taken care of by Spring Data JPA. So we just have to focus on writing queries.)
+
+Spring Data JPA provides us three interfaces, one is the CrudRrepository. And it is purely for CRUD operations like select, update, insert, delete. Then there is another interface called PagingAndSortingRepository. And this will help us to do all kinds of a pagination and sorting things.And then we have JpaRepository So this is basically related to things like you want to do things in batches. And using Spring Data JPA, just normal JPA repository also you can do all the operations, but this gives you features like you want to do things in batches, then, or maybe flush,
+
+So h2database we can run in memory also, and also file based. So in memory means until the time our application is running, the data will be there, as soon as it will stop, the data is gone. But what we want is, even after we stop the application, our data should stay, so we have taken the file based
+
+an ORM Framework called Hibernate and JPA. JPA stands for Java Persistence API; ORM - Object, which means this one, Relational Mapping. Relational means this one, table, and they're mapping.
+
+ So Hibernate along with Spring Data JPA is doing this magic of mapping our Java class objects to database tables, their columns and Java class objects values as the rows. So this is done by this ORM framework called Hibernate, and JPA.(jpa ia what we use)
+
+What is this driver name? So this driver name is a specific to a database. So here we are using H2. So we will use org.h2.Driver. If we are using MySQL database, we will use a different driver. And what this driver does is it tells Hibernate, how to convert the queries from this Java code to a H2 database(or any different types) understandable language,
+
+Spring Data JPA  is just the specification hibernate implements it using ORM.
+
+ @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name = "PROPERTY_TITLE", nullable = false)
+    private String title;
+    private String description;
+    private String ownerName;
+    @Column(name = "EMAIL", nullable = false)
+    private String ownerEmail;
+    private Double price;
+    private String address;
+
+Data that is coming from the controller to the service is in DTO type in service we will do some type conversion since repository layer dosent accept the DTO type information it accepts entity type so to do this coversion we use adaptive design pattern
+
+The Model represents the information we receive, often in the form of a placeholder or DTO (Data Transfer Object).
+
+The two classes are used to decouple the database layer from the controller layer. This allows changes to be made to the database without altering the controller layer in the DTO.
+
+Optional helps us to do the null check it is a wrapper it is java 8 feature.
+
+The delete operation doesn't return anything, hence, void is the suitable return type.
+
+Spring profiles: using this we can run the code in any environment with different database connection (local,dev,testing) with changing the code , by making some configuration file changes(Spring Profiles allow configuration settings to be modified depending on the environment the Spring Boot application is running in, without the need to change the code.)
+
+@Value(${}): we can get the configuration in any class
+
+By default, Apache HTTP server is configured to listen on port 80.
+
+The 'git commit -m' command creates a new version of the project. A short message describing the changes made is included in quotation marks.
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)  these two annotations will help us to ignore if there are any unknown or null it will not return those fields it will return only not null fields.
+
+SonarLint by Sonar is a free IDE extension to find and fix coding issues in real-time, flagging issues as you code, just like a spell-checker. More than a linter, it also delivers rich contextual guidance to help developers understand why there is an issue, assess the risk and educate them on how to fix it.
+
+Aspect oriented programming(AOP) is a way of programming which helps us to take out the common functionalities and put in one place, for example there are multiple class implementing the same operating (error handling ,logging etc) we can extract all those and keep them in a single place or a file and inject them when required in each class .
+
+exception is an object and that exception object should be extending form the exception class
+
+@ControllerAdvice - This annotation is used to tell spring that a particular centralised class which handles all the exception is the exception handler class
+
+@ExceptionHandler - what type of exception handler (@ExceptionHandler(BusinessException.class)).
+
+@ExceptionHandler(MethodArgumentNotValidException.class) - for field level exception handling.
+
+In order to make our validation working we have to annotate the method we are using with @Valid in the controller (public ResponseEntity<UserDTO> register(@Valid @RequestBody UserDTO userDTO))
+
+The @ControllerAdvice annotation is used to indicate to Spring that the class should act as the central point for exception handling in the application.
+
+Logging can be of different levels
+-Trace
+-Debug
+-Info
+-Warning
+-Error
+
+these can be applied any work environment(dev,test,prod etc) always keep the minimum level(error, warning) of log in production because to many log files in the application can slow down the application
+
+SLF4J with Logback is one of the library for logging LOG4J is also another library for logging ,SLF4J with Logback is more efficient and easy to use than LOG4J
+
+logging is of two types console based logging and other is through files.
+
+now say if the logging level is info it will print the logs which are equal to info and higher than that ie warning and error it will neglect debug and trace
+
+What is one of the primary functions of the appender in LogBack configuration?
+
+The Appender function tells you how you have to log as mentioned in the text.
+
+When running the application in dev profile the logs are created in the FILE-ROLLING appender as mentioned in the logback.xml file.
+
+Swagger is a library that can be used to gather all the API in our application and document it so that we can give it to other teams.
+
+
+If the type is not explicitly mentioned, by default it assumes that it's going to produce and consume 'application/json'.
+
+Mobile apps, websites, or other microservices that make calls to the API are considered its consumers.
+
+The @ApiOperation annotation is used to define the operation name and provide any extra notes or details about the operation method.
+
+‘jmx’ stands for Java Monitoring eXtensions. It is used when another program wants to connect to Spring Boot for information related to Spring Boot’s health and monitoring information.
+
+
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "USER_ID",nullable = false) these entities are used to give relationship to the tables and also join the two table , FetchType.LAZY is used when we don't want the user details to be returned when we do get properties,FetchType.EAGER can be used to get the user details in this case.
+
+
+For * ->one relationship the default is Fetchtype.EAGER ,while getting the parent data also get the child data
+For * ->many relationship the default is Fetchtype.LAZY, while getting the parent data only
+
+in JPA repository pagination and sorting comes inbuilt but for CRUD repository u have to do it mannualy.
+
